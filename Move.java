@@ -1,78 +1,166 @@
+import java.util.Scanner;
 
-public class Global {
+public class Move {
+	
+	Scanner ler = new Scanner(System.in);
 
-	// VARIÁVEIS DO JOGADOR
-	public static boolean isLive;
-	public static boolean isWinner;
-	public static int previousPosition;
-	public static int playerPosition;
-	public static String playerName;
-	public static int playerLife;
-	public static int playerAttackmin;
-	public static int playerAttackmax;
-	public static int playerResistancemin;
-	public static int playerResistancemax;
-	public static String playerWeapon;
-	public static String playerArmor;
-	public static String playerKey;
-	public static int eliminations;
-	public static int playerEnergy;
-	public static int damage;
+	public static void MoveNorth() {
+		
+		if (Global.sideNcurrent == Global.previousPosition && Global.sideNcurrent != 0) {
+			Global.previousPosition = Global.playerPosition;
+			Global.playerPosition = Global.sideNcurrent;
+		}
+		else if (Global.sideNcurrent == 0) {
+			System.out.println("Esta lado não tem porta.");
+		}
+		else if (Global.obstacleCurrent.equals("trap")) {
+			System.out.println("ATENÇÃO: Para sair desta sala, você deve primeiro passar pela armadilha!");
+		}
+		else if (Global.obstacleCurrent.equals("enemy1")
+				|| Global.obstacleCurrent.equals("enemy2")
+				|| Global.obstacleCurrent.equals("enemy3")) {
+			System.out.println("ATENÇÃO: Você deve primeiro passar pelo inimigo!");
+		}
+		else if (Global.northCurrent.equals("marrom") || (Global.northCurrent.equals(Global.playerKey))) {
+			Global.previousPosition = Global.playerPosition;
+			Global.playerPosition = Global.sideNcurrent;
+		}		
+		else {
+			System.out.println("ATENÇÃO: Você precisa da chave "+Global.northCurrent+" para abrir esta porta!");
+		}	
+	}
 	
-	// VARIÁVEIS DOS INIMIGOS
-	public static String enemyName;
-	public static int enemyLife;
-	public static int enemyAttackmin;
-	public static int enemyAttackmax;
-	public static int enemyResistancemin;
-	public static int enemyResistancemax;
+	public static void MoveSouth() {
+		
+		if (Global.sideScurrent == Global.previousPosition && Global.sideScurrent != 0) {
+			Global.previousPosition = Global.playerPosition;
+			Global.playerPosition = Global.sideScurrent;
+		}
+		else if (Global.sideScurrent == 0) {
+			System.out.println("Esta lado não tem porta.");
+		}
+		else if (Global.obstacleCurrent.equals("trap")) {
+			System.out.println("ATENÇÃO: Para sair desta sala, você deve primeiro passar pela armadilha!");
+		}
+		else if (Global.obstacleCurrent.equals("enemy1")
+				|| Global.obstacleCurrent.equals("enemy2")
+				|| Global.obstacleCurrent.equals("enemy3")) {
+		}		
+		else if (Global.southCurrent.equals("marrom") || (Global.southCurrent.equals(Global.playerKey))) {
+			Global.previousPosition = Global.playerPosition;
+			Global.playerPosition = Global.sideScurrent;
+			System.out.println("Você passou para a "+Global.nameRoomCurrent);
+		}
+		else {
+			System.out.println("ATENÇÃO: Você precisa da chave "+Global.southCurrent+" para abrir esta porta!");
+		}	
+	}
 	
-	// VARIÁVEIS DE DEFINIÇÃO DO JOGADOR E DOS INIMIGOS
-	public static int optionPlayer;
-	public static String enemy1;
-	public static String enemy2;
-	public static String enemy3;
-	
-	// VARIÁVEIS DO CENÁRIO ATUAL
-	public static String nameRoomCurrent;
-	public static String roomCurrent;
-	public static String northCurrent;
-	public static String southCurrent;
-	public static String eastCurrent;
-	public static String westCurrent;
-	public static String upCurrent;
-	public static String downCurrent;
-	public static int sideNcurrent;
-	public static int sideScurrent;
-	public static int sideEcurrent;
-	public static int sideWcurrent;
-	public static int sideUcurrent;
-	public static int sideDcurrent;
-	public static String weaponRoomCurrent;
-	public static String armorRoomCurrent;
-	public static String keyRoomCurrent;
-	public static String obstacleCurrent;
-	
-	// VARIÁVEIS CLASSE RANDOM
-	public static int minimum;
-	public static int maximum;
-	public static int range;
-	public static double numberRandom;
-	public static int blow;
-	public static int defense;
-	
-	// VARIÁVEIS ARMADILHA
-	public static int right;
-	public static int left;
-	public static int center;
-	
-	// VARIÁVEIS ITENS
-	public static int number;
-	public static int counter;
-	public static String enemy;
-	public static String key;
-	public static String weapon;
-	public static String armor;
-	public static String door;
 
+	public static void MoveEast() {
+		
+		if (Global.sideEcurrent == Global.previousPosition && Global.sideEcurrent != 0) { //moveu
+			Global.previousPosition = Global.playerPosition;
+			Global.playerPosition = Global.sideEcurrent;
+		}
+		else if (Global.sideEcurrent == 0) {
+			System.out.println("Esta lado não tem porta.");
+		}
+		else if (Global.obstacleCurrent.equals("trap")) {
+			System.out.println("ATENÇÃO: Para sair desta sala, você deve primeiro passar pela armadilha!");
+		}
+		else if (Global.obstacleCurrent.equals("enemy1")
+				|| Global.obstacleCurrent.equals("enemy2")
+				|| Global.obstacleCurrent.equals("enemy3")) {
+			System.out.println("ATENÇÃO: Você deve primeiro passar pelo inimigo!");
+		}
+		else if (Global.eastCurrent.equals("marrom") || (Global.eastCurrent.equals(Global.playerKey))) {
+			Global.previousPosition = Global.playerPosition;
+			Global.playerPosition = Global.sideEcurrent;
+		}
+		else {
+			System.out.println("ATENÇÃO: Você precisa da chave "+Global.eastCurrent+" para abrir esta porta!");
+		}	
+	}
+	
+
+	public static void MoveWest() {
+		
+		if (Global.sideWcurrent == Global.previousPosition && Global.sideWcurrent != 0) {
+			Global.previousPosition = Global.playerPosition;
+			Global.playerPosition = Global.sideWcurrent;
+		}
+		else if (Global.sideWcurrent == 0) {
+			System.out.println("Esta lado não tem porta.");
+		}
+		else if (Global.obstacleCurrent.equals("trap")) {
+			System.out.println("ATENÇÃO: Para sair desta sala, você deve primeiro desarmar a armadilha!");
+		}
+		else if (Global.obstacleCurrent.equals("enemy1")
+				|| Global.obstacleCurrent.equals("enemy2")
+				|| Global.obstacleCurrent.equals("enemy3")) {
+			System.out.println("ATENÇÃO: Você deve primeiro vencer o inimigo!");
+		}
+		else if (Global.westCurrent.equals("marrom") || (Global.westCurrent.equals(Global.playerKey)) ) {
+			Global.previousPosition = Global.playerPosition;
+			Global.playerPosition = Global.sideWcurrent;
+		}
+		else {
+			System.out.println("ATENÇÃO: Você precisa da chave "+Global.westCurrent+" para abrir esta porta!");
+		}	
+	}
+	
+	
+	public static void MoveUp() {
+		
+		if (Global.sideUcurrent == Global.previousPosition && Global.sideUcurrent != 0) {
+			Global.previousPosition = Global.playerPosition;
+			Global.playerPosition = Global.sideUcurrent;
+		}
+		else if (Global.sideUcurrent == 0) {
+			System.out.println("Esta lado não tem porta.");
+		}
+		else if (Global.obstacleCurrent.equals("trap")) {
+			System.out.println("ATENÇÃO: Você deve primeiro desarmar a armadilha!");
+		}
+		else if (Global.obstacleCurrent.equals("enemy1")
+				|| Global.obstacleCurrent.equals("enemy2")
+				|| Global.obstacleCurrent.equals("enemy3")) {
+			System.out.println("ATENÇÃO: Para sair desta sala, você deve primeiro vencer o inimigo!");
+		}
+		else if (Global.upCurrent.equals("marrom") || (Global.upCurrent.equals(Global.playerKey)) ) {
+			Global.previousPosition = Global.playerPosition;
+			Global.playerPosition = Global.sideUcurrent;
+		}
+		else {
+			System.out.println("ATENÇÃO: Você precisa da chave "+Global.upCurrent+" para abrir esta porta!");
+		}	
+	}
+
+	
+	public static void MoveDown() {
+		
+		if (Global.sideDcurrent == Global.previousPosition && Global.sideDcurrent != 0) {
+			Global.previousPosition = Global.playerPosition;
+			Global.playerPosition = Global.sideDcurrent;
+		}
+		else if (Global.sideDcurrent == 0) {
+			System.out.println("Esta lado não tem porta.");
+		}
+		else if (Global.obstacleCurrent.equals("trap")) {
+			System.out.println("ATENÇÃO: Para sair desta sala, você deve primeiro desarmar a armadilha!");
+		}
+		else if (Global.obstacleCurrent.equals("enemy1")
+				|| Global.obstacleCurrent.equals("enemy2")
+				|| Global.obstacleCurrent.equals("enemy3")) {
+			System.out.println("ATENÇÃO: Você deve primeiro vencer o inimigo!");
+		}
+		else if (Global.downCurrent.equals("marrom") || (Global.downCurrent.equals(Global.playerKey)) ) {
+			Global.previousPosition = Global.playerPosition;
+			Global.playerPosition = Global.sideDcurrent;
+		}
+		else {
+			System.out.println("ATENÇÃO: Você precisa da chave "+Global.downCurrent+" para abrir esta porta!");
+		}		
+	}	
 }
